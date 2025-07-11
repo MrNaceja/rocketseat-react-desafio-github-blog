@@ -1,1 +1,48 @@
 @import "tailwindcss";
+
+@theme {
+
+    --color-*: initial;
+    --color-brand: #3294F8;
+    --color-base-title: #E7EDF4;
+    --color-base-subtitle: #C4D4E3;
+    --color-base-text: #AFC2D4;
+    --color-base-span: #7B96B2;
+    --color-base-label: #3A536B;
+    --color-base-border: #1C2F41;
+    --color-base-post: #112131;
+    --color-base-profile: #0B1B2B;
+    --color-base-background: #071422;
+    --color-base-input: #040F1A; 
+
+    --font-nunito: "Nunito", sans-serif;
+    --tw-leading: 1.6;
+}
+
+:focus, 
+:focus-visible {
+    @apply ring ring-brand outline-none;
+}
+
+@utility container {
+    @apply mx-auto px-6;
+}
+
+@utility font-style-title-l {
+    @apply font-bold text-2xl;
+}
+@utility font-style-title-m {
+    @apply font-bold text-xl;
+}
+@utility font-style-title-s {
+    @apply font-bold text-lg;
+}
+@utility font-style-text-m {
+    @apply font-normal text-base;
+}
+@utility font-style-text-s {
+    @apply font-normal text-sm;
+}
+@utility font-style-component-link {
+    @apply font-bold text-xs;
+}
