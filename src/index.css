@@ -16,7 +16,6 @@
     --color-base-input: #040F1A; 
 
     --font-nunito: "Nunito", sans-serif;
-    --tw-leading: 1.6;
 }
 
 :focus, 
@@ -26,22 +25,26 @@
 
 @utility container {
     @apply mx-auto px-6;
+
+    @variant lg {
+        @apply max-w-[54rem];
+    }
 }
 
 @utility font-style-title-l {
-    @apply font-bold text-2xl;
+    @apply font-bold text-2xl leading-[160%];
 }
 @utility font-style-title-m {
-    @apply font-bold text-xl;
+    @apply font-bold text-xl leading-[160%];
 }
 @utility font-style-title-s {
-    @apply font-bold text-lg;
+    @apply font-bold text-lg leading-[160%];
 }
 @utility font-style-text-m {
-    @apply font-normal text-base;
+    @apply font-normal text-base leading-[160%];
 }
 @utility font-style-text-s {
-    @apply font-normal text-sm;
+    @apply font-normal text-sm leading-[160%];
 }
 @utility font-style-component-link {
     @apply font-bold text-xs;

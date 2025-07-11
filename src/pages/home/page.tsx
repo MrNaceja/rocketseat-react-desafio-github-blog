@@ -1,7 +1,9 @@
+import { Profile } from '@/pages/home/profile';
+
 export function HomePage() {
     return (
-        <section>
-            <h1>Home Page</h1>
-        </section>
+        <article>
+            <Profile />
+        </article>
     )
 }
