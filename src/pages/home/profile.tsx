@@ -1,34 +1,11 @@
 import { Link } from '@/components/link'
-import { ApiServiceFetchUserError, fetchUser, type GithubUser } from '@/services/github/users.service'
+import { useUser } from '@/hooks/use-user'
 import { Building, ExternalLink, Github, Users } from 'lucide-react'
-import { useCallback, useEffect, useState, type PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 
 export const Profile = () => {
-    const [user, setUser] = useState<GithubUser | null>(null)
-    const [isLoadingUser, setIsLoadingUser] = useState(true)
-    const [loadUserError, setLoadUserError] = useState<ApiServiceFetchUserError | null>(null)
+    const { user, isPending: isLoadingUser, error: loadUserError } = useUser()
 
-    const loadUser = useCallback(async () => {
-        setIsLoadingUser(true)
-
-        try {
-            setUser(await fetchUser())
-        }
-        catch (e) {
-            setLoadUserError(e as ApiServiceFetchUserError)
-        }
-        finally {
-            setIsLoadingUser(false)
-        }
-
-    }, [])
-
-
-    useEffect(() => {
-        if (!user) {
-            loadUser()
-        }
-    }, [user, loadUser])
     return (
         <header className='bg-base-profile rounded-xl px-8 py-10 shadow -mt-24 flex flex-col items-center sm:items-stretch sm:flex-row gap-8'>
             <ProfileSkeleton visible={isLoadingUser || !user}>

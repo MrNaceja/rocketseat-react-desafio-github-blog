@@ -1,31 +1,10 @@
 import { CardPost } from '@/components/card-post'
+import { usePosts } from '@/hooks/use-posts'
 import { SearchPosts } from '@/pages/home/search-posts'
-import { ApiServiceFetchPostsError, fetchPosts, type GithubPost } from '@/services/github/posts.service'
-import { useCallback, useEffect, useState, type PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 
 export const Posts = () => {
-    const [posts, setPosts] = useState<GithubPost[]>([])
-    const [isLoadingPosts, setIsLoadingPosts] = useState(true)
-    const [loadPostsError, setLoadPostsError] = useState<ApiServiceFetchPostsError | null>(null)
-
-    const loadPosts = useCallback(async () => {
-        setIsLoadingPosts(true)
-        try {
-            setPosts(await fetchPosts())
-        }
-        catch (e) {
-            setLoadPostsError(e as ApiServiceFetchPostsError)
-        }
-        finally {
-            setIsLoadingPosts(false)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (posts.length == 0) {
-            loadPosts()
-        }
-    }, [loadPosts, posts])
+    const { posts, isPending: isLoadingPosts, error: loadPostsError } = usePosts()
     return (
         <div className='flex flex-col gap-12 mt-20'>
             <SearchPosts />
