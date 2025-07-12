@@ -12,4 +12,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, './src')
     }
   },
+  server: {
+    watch: {
+      ignored: ['**/mock/**'] // Vamos o refresh da aplicação quando houver alterações na pasta mock (json-server)
+    }
+  }
 })
