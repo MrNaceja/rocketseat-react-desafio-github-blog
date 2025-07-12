@@ -1,5 +1,5 @@
 import { Link } from '@/components/link'
-import { Building, Github, Users } from 'lucide-react'
+import { Building, ExternalLink, Github, Users } from 'lucide-react'
 
 export const Profile = () => {
     return (
@@ -13,7 +13,10 @@ export const Profile = () => {
                 <div className='flex flex-col'>
                     <div className='flex items-center justify-between'>
                         <h1 className='font-style-title-l text-base-title flex-1'>Eduardo Toriani</h1>
-                        <Link to="https://github.com/MrNaceja">github</Link>
+                        <Link to="https://github.com/MrNaceja">
+                            <span>github</span> 
+                            <ExternalLink />
+                        </Link>
                     </div>
                     <p className='text-base-text font-style-text-m'>Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.</p>
                 </div>

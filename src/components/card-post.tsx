@@ -1,6 +1,16 @@
+import { useNavigate } from 'react-router'
+
 export const CardPost = () => {
+
+    const navigate = useNavigate()
+
+    const handlePressCard = () => {
+        navigate('/posts/1')
+    }   
+
     return (
         <article 
+        onClick={handlePressCard}
             className='rounded-xl border border-transparent hover:border-base-border bg-base-post p-8 flex flex-col gap-5'
         >
             <caption className='flex items-center justify-between gap-2'>
