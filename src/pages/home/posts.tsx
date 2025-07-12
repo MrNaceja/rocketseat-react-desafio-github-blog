@@ -1,19 +1,80 @@
 import { CardPost } from '@/components/card-post'
 import { SearchPosts } from '@/pages/home/search-posts'
-
-const posts = Array.from({ length: 5 })
+import { ApiServiceFetchPostsError, fetchPosts, type GithubPost } from '@/services/github/posts.service'
+import { useCallback, useEffect, useState, type PropsWithChildren } from 'react'
 
 export const Posts = () => {
+    const [posts, setPosts] = useState<GithubPost[]>([])
+    const [isLoadingPosts, setIsLoadingPosts] = useState(true)
+    const [loadPostsError, setLoadPostsError] = useState<ApiServiceFetchPostsError | null>(null)
+
+    const loadPosts = useCallback(async () => {
+        setIsLoadingPosts(true)
+        try {
+            setPosts(await fetchPosts())
+        }
+        catch (e) {
+            setLoadPostsError(e as ApiServiceFetchPostsError)
+        }
+        finally {
+            setIsLoadingPosts(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (posts.length == 0) {
+            loadPosts()
+        }
+    }, [loadPosts, posts])
     return (
         <div className='flex flex-col gap-12 mt-20'>
             <SearchPosts />
             <ul className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-                {posts.map((_, idx) => (
-                    <li key={idx}>
-                        <CardPost />
-                    </li>
-                ))}
+                <PostsListSkeleton visible={isLoadingPosts || posts.length == 0}>
+                    {
+                        loadPostsError
+                            ? (
+                                <span>{loadPostsError.message} ({loadPostsError.cause?.message})</span>
+                            )
+                            : (
+                                posts.map((post) => (
+                                    <li key={post.id}>
+                                        <CardPost post={post} />
+                                    </li>
+                                ))
+                            )
+                    }
+                </PostsListSkeleton>
             </ul>
         </div>
+    )
+}
+
+const PostsListSkeleton = ({ children, visible }: PropsWithChildren & { visible: boolean }) => {
+    return (
+        !visible ? children : (
+            <>
+                {
+                    Array.from({ length: 5 }).map((_, idx) => (
+                        <li key={idx}>
+                            <div
+                                className='rounded-xl bg-base-post p-8 flex flex-col gap-5 min-h-56'
+                            >
+                                <div className='flex items-center justify-between gap-2'>
+                                    <span className='h-5 w-1/2 bg-base-border' />
+                                    <span className='h-2 w-6 bg-base-border' />
+                                </div>
+                                <div className='flex flex-col gap-1 w-full flex-1'>
+                                    <span className='w-4/4 h-3 bg-base-border rounded-xs' />
+                                    <span className='w-3/4 h-3 bg-base-border rounded-xs' />
+                                    <span className='w-3/4 h-3 bg-base-border rounded-xs' />
+                                    <span className='w-2/4 h-3 bg-base-border rounded-xs' />
+                                </div>
+                            </div>
+                        </li>
+                    ))
+                }
+            </>
+        )
     )
 }

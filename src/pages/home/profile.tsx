@@ -1,5 +1,5 @@
 import { Link } from '@/components/link'
-import { ApiServiceFetchUserError, fetchUser, type GithubUser } from '@/services/github/fetch-user.service'
+import { ApiServiceFetchUserError, fetchUser, type GithubUser } from '@/services/github/users.service'
 import { Building, ExternalLink, Github, Users } from 'lucide-react'
 import { useCallback, useEffect, useState, type PropsWithChildren } from 'react'
 
@@ -30,7 +30,7 @@ export const Profile = () => {
         }
     }, [user, loadUser])
     return (
-        <header className='bg-base-profile rounded-xl px-8 py-10 shadow -mt-24 flex flex-col sm:flex-row gap-8'>
+        <header className='bg-base-profile rounded-xl px-8 py-10 shadow -mt-24 flex flex-col items-center sm:items-stretch sm:flex-row gap-8'>
             <ProfileSkeleton visible={isLoadingUser || !user}>
                 {
                     loadUserError
