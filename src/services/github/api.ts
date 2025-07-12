@@ -1,17 +1,25 @@
 import axios from 'axios'
+import { author as github_username, name as github_issues_posts_repository } from '../../../package.json'
 
-const shouldUseMock = true
+type ApiGithubOptions = {
+    github_username: string, 
+    github_issues_posts_repository: string,
+    aditional_delay_in_seconds: number
+}
 
-const URL_GITHUB_API_MOCK = 'http://localhost:3000'
-const URL_GITHUB_API = 'https://api.github.com'
+export const options: ApiGithubOptions = {
+    github_username,
+    github_issues_posts_repository,
+    aditional_delay_in_seconds: 0
+} 
 
 export const api = axios.create({
-    baseURL: shouldUseMock ? URL_GITHUB_API_MOCK : URL_GITHUB_API
+    baseURL: 'https://api.github.com'
 })
 
-if ( shouldUseMock ) {
+if ( options.aditional_delay_in_seconds > 0 ) {
     api.interceptors.response.use(async (response) => {
-        await new Promise(ok => setTimeout(ok, 3000)) // Fake Delay
+        await new Promise(ok => setTimeout(ok, (options.aditional_delay_in_seconds * 1000))) // Fake Delay
         response.data = response.data.data
         return response
     })
