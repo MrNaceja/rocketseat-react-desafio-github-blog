@@ -31,6 +31,10 @@
     }
 }
 
+@utility shadow {
+    box-shadow: 0 2px 28px rgba(0, 0, 0, .20);
+}
+
 @utility font-style-title-l {
     @apply font-bold text-2xl leading-[160%];
 }
