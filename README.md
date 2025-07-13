@@ -1,69 +1,55 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🚀 Desafio React.js - HTTP e Performance (Aplicação Github Blog)
 
-Currently, two official plugins are available:
+Este projeto é um Front-end desenvolvido como parte do [desafio](https://efficient-sloth-d85.notion.site/Desafio-03-Github-Blog-13593953670346908462ddc648d42cf1) do módulo de HTTP e Performance de React.js da [Rocketseat](https://www.rocketseat.com.br/).  
+A aplicação (Github Blog) representa uma um blog de posts (issues) do github totalmente responsivo. Além disso foi realizado o deploy da aplicação na vercel e é possível pré-visualizar [aqui](https://github-blog-three-tau.vercel.app/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📋 Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📄 Listagem de posts (issues criadas no repositório do projeto).
+- 📄 Detalhes do post como autor, quantidade de comentários e uma preview em markdown.
+- 🔎 Filtrar posts.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🔗 Rotas da Aplicação
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🏠 `/`
+Página inicial do blog com com listagem de posts em formato card com uma barra de busca. Além da apresentação do perfil principal do usuário do github proprietário do repositório host dos posts (issues).
+
+### 📃 `/posts/:id`
+Detalhes de um post selecionado na tela inicial. Apresenta titulo, conteúdo, quantidade de comentários e informações do autor.
+
+---
+
+## ▶️ Executando o projeto
+
+```bash
+# Instale as dependências
+npm install
+
+# Inicie a aplicação
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+A Aplicação estará estará disponível em:  
+[http://localhost:5173](http://localhost:5173)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Tecnologias utilizadas
+
+- React.js
+- React Router
+- Typescript
+- Tailwind CSS
+- Tanstack React Query
+- class-variance-authority
+- axios
+- React Markdown
+- React Syntax Hightlighter
+---
+
+Desenvolvido com 💜 para o desafio da [Rocketseat](https://www.rocketseat.com.br/)
