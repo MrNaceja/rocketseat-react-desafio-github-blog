@@ -21,7 +21,7 @@ export const CardPost = ({ post }: CardPostProps) => {
     return (
         <article 
             onClick={handlePressCard}
-            className='rounded-xl border border-transparent hover:border-base-border bg-base-post p-8 flex flex-col gap-5'
+            className='rounded-xl border border-transparent hover:border-base-border bg-base-post p-8 flex flex-col gap-5 cursor-default opacity-90 hover:opacity-100'
         >
             <div className='flex justify-between gap-2'>
                 <h3 className='font-style-title-m text-base-title line-clamp-2 flex-1'>{post.title}</h3>

@@ -41,10 +41,12 @@ export class ApiServiceFetchPostsError extends AxiosError {
     }
 }
 export async function fetchPosts(filter: string = ''): Promise<GithubPost[]> {
+    filter = (filter ? `${filter} ` : '')
+
     try {
         const issuesResponse = (await api.get<FetchIssuesServiceResponse>('/search/issues', {
             params: {
-                q: `repo:${options.github_username}/${options.github_issues_posts_repository}${filter}`
+                q: `${filter}repo:${options.github_username}/${options.github_issues_posts_repository}`
             }
         })).data
 

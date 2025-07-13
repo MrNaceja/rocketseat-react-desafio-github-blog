@@ -5,6 +5,7 @@ export function useUser() {
     const { data: user, ...userQuery } = useQuery<GithubUser, ApiServiceFetchUserError>({
         queryKey: ['user'],
         queryFn: fetchUser,
+        staleTime: 5 * 60 * 1000, // 5 minutos
         refetchOnWindowFocus: false,
         refetchOnReconnect: false
     })

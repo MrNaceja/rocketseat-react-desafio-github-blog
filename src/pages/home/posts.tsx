@@ -1,13 +1,15 @@
 import { CardPost } from '@/components/card-post'
 import { usePosts } from '@/hooks/use-posts'
 import { SearchPosts } from '@/pages/home/search-posts'
-import type { PropsWithChildren } from 'react'
+import { useState, type PropsWithChildren } from 'react'
 
 export const Posts = () => {
-    const { posts, isPending: isLoadingPosts, error: loadPostsError } = usePosts()
+    const [searchFilter, setSearchFilter] = useState('')
+    const { posts, isPending: isLoadingPosts, error: loadPostsError } = usePosts(searchFilter)
+
     return (
         <div className='flex flex-col gap-12 mt-20'>
-            <SearchPosts />
+            <SearchPosts onSearch={setSearchFilter} amountTotalPosts={posts.length} />
             <ul className='grid grid-cols-1 md:grid-cols-2 gap-8'>
                 <PostsListSkeleton visible={isLoadingPosts || posts.length == 0}>
                     {

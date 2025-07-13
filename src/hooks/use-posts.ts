@@ -1,11 +1,11 @@
 import { fetchPosts, type ApiServiceFetchPostsError, type GithubPost } from '@/services/github/posts.service'
 import { useQuery } from '@tanstack/react-query'
 
-export function usePosts() {
+export function usePosts(filter?: string) {
     const { data: posts, ...postsQuery } = useQuery<GithubPost[], ApiServiceFetchPostsError>({
-        queryKey: ['posts'],
+        queryKey: ['posts', filter],
         async queryFn() {
-            return await fetchPosts()
+            return await fetchPosts(filter)
         },
         staleTime: 5 * 60 * 1000, // 5 minutos
         refetchOnWindowFocus: false,
