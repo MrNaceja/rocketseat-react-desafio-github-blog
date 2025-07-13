@@ -19,7 +19,7 @@ export const Posts = () => {
                             )
                             : (
                                 posts.map((post) => (
-                                    <li key={post.id}>
+                                    <li key={post.id} className='*:h-full'>
                                         <CardPost post={post} />
                                     </li>
                                 ))

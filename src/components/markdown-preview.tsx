@@ -16,10 +16,10 @@ export const MarkdownPreview = ({ markup, ...divProps }: MarkdownPreviewProps) =
                 components={{
                     p: ({ children }) => (<p className='font-style-text-m text-base-text'>{children}</p>),
                     b: ({ children }) => (<strong className='font-bold'>{children}</strong>),
-                    h1: ({ children }) => (<h1 className='font-style-title-l'>{children}</h1>),
-                    h2: ({ children }) => (<h2 className='font-style-title-m'>{children}</h2>),
-                    h3: ({ children }) => (<h3 className='font-style-title-s'>{children}</h3>),
-                    hr: () => (<hr className='border-t-base-border my-1'/>),
+                    h1: ({ children }) => (<h1 className='font-style-title-l my-2'>{children}</h1>),
+                    h2: ({ children }) => (<h2 className='font-style-title-m my-2'>{children}</h2>),
+                    h3: ({ children }) => (<h3 className='font-style-title-s my-2'>{children}</h3>),
+                    hr: () => (<hr className='border-t-base-border my-2'/>),
                     a: ({ children, href }) => (<Link to={href!}>{children}</Link>),
                     code: ({ children, className, ...rest }) => {
                         const languageMatched = /language-(\w+)/.exec(className || '')

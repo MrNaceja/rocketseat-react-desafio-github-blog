@@ -11,7 +11,7 @@ export function useUser() {
     })
 
     return {
-        user: user || null,
+        user,
         ...userQuery
     }
 }
